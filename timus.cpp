@@ -41,9 +41,6 @@ int main()
         }
     }
 
-    cout << endl
-         << endl;
-    cout << max_bank << endl;
-    cout << max_count << endl;
+    cout << max_bank;
     return 0;
 }
