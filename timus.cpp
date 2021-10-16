@@ -4,9 +4,14 @@
 
 using namespace std;
 
+bool comp(int64_t a, int64_t b)
+{
+    return a < b;
+}
+
 int main()
 {
-    int64_t n;
+    int64_t n, elem;
     vector<int64_t> banknotes;
 
     cin >> n;
@@ -15,10 +20,11 @@ int main()
 
     for (int64_t i = 0; i < n; i++)
     {
-        cin >> banknotes[i];
+        cin >> elem;
+        banknotes.push_back(elem);
     }
 
-    sort(banknotes.begin(), banknotes.end());
+    sort(banknotes.begin(), banknotes.end(), comp);
 
     int64_t cur_bank = -1, cur_count = 0, max_bank = -1, max_count = -1;
     for (int64_t i = 0; i < n; i++)
@@ -36,7 +42,7 @@ int main()
 
         if (cur_count > max_count)
         {
-            max_bank = banknotes[i];
+            max_bank = cur_bank;
             max_count = cur_count;
         }
     }
