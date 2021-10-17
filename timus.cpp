@@ -33,6 +33,7 @@ int main()
         price += paths[i]*paths[i];
         sum_road += paths[i];
     }
+    
     cout << price;
     return 0;
 }
