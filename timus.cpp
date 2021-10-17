@@ -25,7 +25,7 @@ int main()
     parts.reserve(tests);
     for (i = 0; i < tests; i++)
     {
-        cin >> team >> part;
+        cin >> part >> team;
         teams[i] = team;
         parts[i] = part;
     }
@@ -40,7 +40,7 @@ int main()
         sum1 = div * div * t * (t - 1) / 2;
         sum2 = mod * (mod - 1) / 2;
         sum3 = mod * div * (t - 1);
-        cout << sum1 + sum2 + sum3;
+        cout << sum1 + sum2 + sum3 << endl;
     }
 
     return 0;
