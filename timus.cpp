@@ -11,42 +11,28 @@ bool comp(int64_t a, int64_t b)
 
 int main()
 {
-    int64_t n, elem;
-    vector<int64_t> banknotes;
-
+    int64_t i;
+    int64_t n;
     cin >> n;
-
-    banknotes.reserve(n);
-
-    for (int64_t i = 0; i < n; i++)
+    
+    int64_t road;
+    vector <int64_t> paths;
+    paths.reserve(n);
+    for ( i = 0; i < n; i++)
     {
-        cin >> elem;
-        banknotes.push_back(elem);
+        cin >> road;
+        paths.push_back(road);
     }
+    
+    sort(paths.begin(), paths.end());
 
-    sort(banknotes.begin(), banknotes.end(), comp);
-
-    int64_t cur_bank = -1, cur_count = 0, max_bank = -1, max_count = -1;
-    for (int64_t i = 0; i < n; i++)
+    int64_t price = 0, sum_road = 0;
+    for ( i = 0; i < n; i++)
     {
-
-        if (cur_bank != banknotes[i])
-        {
-            cur_count = 1;
-            cur_bank = banknotes[i];
-        }
-        else
-        {
-            cur_count++;
-        }
-
-        if (cur_count > max_count)
-        {
-            max_bank = cur_bank;
-            max_count = cur_count;
-        }
+        price += 2 * sum_road * paths[i];
+        price += paths[i]*paths[i];
+        sum_road += paths[i];
     }
-
-    cout << max_bank;
+    cout << price;
     return 0;
 }
