@@ -12,28 +12,36 @@ bool comp(int64_t a, int64_t b)
 int main()
 {
     int64_t i;
-    int64_t n;
-    cin >> n;
-    
-    int64_t road;
-    vector <int64_t> paths;
-    paths.reserve(n);
-    for ( i = 0; i < n; i++)
-    {
-        cin >> road;
-        paths.push_back(road);
-    }
-    
-    sort(paths.begin(), paths.end());
+    int64_t tests;
 
-    int64_t price = 0, sum_road = 0;
-    for ( i = 0; i < n; i++)
+    int64_t team;
+    int64_t part;
+    vector<int64_t> teams;
+    vector<int64_t> parts;
+
+    cin >> tests;
+
+    teams.reserve(tests);
+    parts.reserve(tests);
+    for (i = 0; i < tests; i++)
     {
-        price += 2 * sum_road * paths[i];
-        price += paths[i]*paths[i];
-        sum_road += paths[i];
+        cin >> team >> part;
+        teams[i] = team;
+        parts[i] = part;
     }
-    
-    cout << price;
+
+    int64_t t, p, div, mod, sum1, sum2, sum3;
+    for (i = 0; i < tests; i++)
+    {
+        t = teams[i];
+        p = parts[i];
+        div = p / t;
+        mod = p % t;
+        sum1 = div * div * t * (t - 1) / 2;
+        sum2 = mod * (mod - 1) / 2;
+        sum3 = mod * div * (t - 1);
+        cout << sum1 + sum2 + sum3;
+    }
+
     return 0;
 }
