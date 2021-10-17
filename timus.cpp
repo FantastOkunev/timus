@@ -18,7 +18,6 @@ int main()
     int64_t part;
     vector<int64_t> teams;
     vector<int64_t> parts;
-
     cin >> tests;
 
     teams.reserve(tests);
