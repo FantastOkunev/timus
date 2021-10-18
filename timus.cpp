@@ -11,36 +11,43 @@ bool comp(int64_t a, int64_t b)
 
 int main()
 {
-    int64_t i;
-    int64_t tests;
+    int64_t i, j;
 
-    int64_t team;
-    int64_t part;
-    vector<int64_t> teams;
-    vector<int64_t> parts;
-    cin >> tests;
+    int64_t n;
+    cin >> n;
 
-    teams.reserve(tests);
-    parts.reserve(tests);
-    for (i = 0; i < tests; i++)
+    int64_t elem;
+    vector<vector<int64_t>> matrix;
+    matrix.resize(n + 1);
+    for (i = 0; i < n; i++)
     {
-        cin >> part >> team;
-        teams[i] = team;
-        parts[i] = part;
+        matrix[i].reserve(n + 1);
+        matrix[i].push_back(0);
+        for (j = 0; j < n; j++)
+        {
+            cin >> elem;
+            matrix[i].push_back(elem);
+        }
+    }
+    for (j = 0; j < n; j++)
+    {
+        matrix[i].resize(n);
     }
 
-    int64_t t, p, div, mod, sum1, sum2, sum3;
-    for (i = 0; i < tests; i++)
+    int64_t max = matrix[n - 1][1];
+    for (i = n - 1; i >= 0; i--)
     {
-        t = teams[i];
-        p = parts[i];
-        div = p / t;
-        mod = p % t;
-        sum1 = div * div * t * (t - 1) / 2;
-        sum2 = mod * (mod - 1) / 2;
-        sum3 = mod * div * (t - 1);
-        cout << sum1 + sum2 + sum3 << endl;
+        for (j = 1; j < n + 1; j++)
+        {
+            matrix[i][j] = matrix[i][j] + matrix[i + 1][j] + matrix[i][j - 1] - matrix[i + 1][j - 1];
+            if (matrix[i][j] > max)
+            {
+                max = matrix[i][j];
+            }
+        }
     }
+
+    cout << max;
 
     return 0;
 }
