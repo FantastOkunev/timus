@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int64_t i, j;
+    int64_t i, j, k, s;
 
     int64_t n;
     cin >> n;
@@ -29,15 +29,22 @@ int main()
         matrix[i].resize(n + 1);
     }
 
-    int64_t max = matrix[n - 1][1];
+    int64_t max = matrix[n - 1][1], cur_sum;
     for (i = n - 1; i >= 0; i--)
     {
         for (j = 1; j < n + 1; j++)
         {
             matrix[i][j] = matrix[i][j] + matrix[i + 1][j] + matrix[i][j - 1] - matrix[i + 1][j - 1];
-            if (matrix[i][j] > max)
+            for (k = n - 1; k >= i; k--)
             {
-                max = matrix[i][j];
+                for (s = 1; s < j + 1; s++)
+                {
+                    cur_sum = matrix[i][j] - matrix[i][s - 1] - matrix[k + 1][j] + matrix[k + 1][s - 1];
+                    if (cur_sum > max)
+                    {
+                        max = cur_sum;
+                    }
+                }
             }
         }
     }
