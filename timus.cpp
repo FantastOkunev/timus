@@ -4,11 +4,6 @@
 
 using namespace std;
 
-bool comp(int64_t a, int64_t b)
-{
-    return a < b;
-}
-
 int main()
 {
     int64_t i, j;
@@ -31,7 +26,7 @@ int main()
     }
     for (j = 0; j < n; j++)
     {
-        matrix[i].resize(n);
+        matrix[i].resize(n + 1);
     }
 
     int64_t max = matrix[n - 1][1];
@@ -46,6 +41,18 @@ int main()
             }
         }
     }
+
+    // cout << endl;
+
+    // for (i = 0; i < n + 1; i++)
+    // {
+    //     for (j = 0; j < n + 1; j++)
+    //     {
+    //         cout << matrix[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << endl;
 
     cout << max;
 
